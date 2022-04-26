@@ -1,0 +1,8 @@
+# 支持的文件类型,使用空格隔开
+format=jpg png gif jpeg tif
+# 存储图像的绝对路径
+root_dir=/Users/lxs/pic_bend/images/
+# 公网IP
+ip=124.223.88.45
+# 单次上传的最大图像大小, 单位MB,最大支持30
+max_img_size=3

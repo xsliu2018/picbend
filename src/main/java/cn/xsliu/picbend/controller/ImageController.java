@@ -5,6 +5,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.xsliu.picbend.Constants;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,9 @@ import java.util.UUID;
 @Slf4j
 @RequestMapping("/pic_bend")
 public class ImageController {
+
+    @Value("${server.port}")
+    private int port;
 
     @Resource
     HttpServletRequest request;
@@ -50,8 +54,8 @@ public class ImageController {
             return Result.fail(String.format("PARAM_ERROR: %s already exist", name));
         }
         img.transferTo(saveFile);
-
-        return Result.success("http://" + Constants.IP + ":9999/" + name);
+        String url = "http://" + Constants.IP + ":" + port + "/" + name;
+        return Result.success(url);
     }
 
 }
